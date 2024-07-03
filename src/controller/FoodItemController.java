@@ -1,6 +1,6 @@
 package controller;
 
-import uiClient.Message;
+import message.Message;
 import model.FoodItem;
 import service.foodItemService.impl.FoodItemServiceImpl;
 

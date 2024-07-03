@@ -1,6 +1,6 @@
 package repository.userRepository;
 
-import uiClient.Message;
+import message.Message;
 import model.User;
 
 public interface UserRepository {

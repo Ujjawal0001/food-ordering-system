@@ -1,6 +1,6 @@
 package repository.userRepository.impl;
 
-import uiClient.Message;
+import message.Message;
 import model.User;
 import repository.userRepository.UserRepository;
 import java.util.ArrayList;

@@ -1,7 +1,6 @@
 package service.foodItemService.impl;
 
-import model.Order;
-import uiClient.Message;
+import message.Message;
 import model.FoodItem;
 import model.Restaurant;
 import repository.foodItemRepository.impl.FoodItemRepositoryImpl;

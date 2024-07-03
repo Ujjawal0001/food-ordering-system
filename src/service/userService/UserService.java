@@ -1,6 +1,6 @@
 package service.userService;
 
-import uiClient.Message;
+import message.Message;
 import model.User;
 public interface UserService {
      User register(String userName, String password , String id , String email , String role , Message msg);

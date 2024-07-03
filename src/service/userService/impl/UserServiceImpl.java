@@ -1,6 +1,6 @@
 package service.userService.impl;
 
-import uiClient.Message;
+import message.Message;
 import model.User;
 import repository.userRepository.impl.UserRepositoryImpl;
 import service.userService.UserService;

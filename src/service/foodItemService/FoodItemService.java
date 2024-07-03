@@ -1,6 +1,6 @@
 package service.foodItemService;
 
-import uiClient.Message;
+import message.Message;
 import model.FoodItem;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package uiClient;
+package message;
 
 public class Message {
     public String message;

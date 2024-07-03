@@ -1,6 +1,6 @@
 package service.orderService;
 
-import uiClient.Message;
+import message.Message;
 import model.FoodItem;
 import model.Order;
 

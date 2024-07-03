@@ -1,7 +1,7 @@
 package service.restaurantService.impl;
 
 import model.User;
-import uiClient.Message;
+import message.Message;
 import model.Restaurant;
 import repository.restaurantRepository.impl.RestaurantRepositoryImpl;
 import service.restaurantService.RestaurantService;

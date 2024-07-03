@@ -1,6 +1,6 @@
 package controller;
 
-import uiClient.Message;
+import message.Message;
 import model.User;
 import service.userService.impl.UserServiceImpl;
 

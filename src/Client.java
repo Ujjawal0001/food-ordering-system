@@ -6,7 +6,8 @@ import model.FoodItem;
 import model.Order;
 import model.Restaurant;
 import model.User;
-import uiClient.Message;
+import message.Message;
+
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -1007,7 +1008,7 @@ public class Client {
         RestaurantController restaurantController = RestaurantController.getInstance();
         OrderController orderController=OrderController.getInstance();
         Message msg= new Message();
-        String ownerId=Helper.getInstance().getCurrentUserId();
+        String ownerId= Helper.getInstance().getCurrentUserId();
         ArrayList<Restaurant>restaurants=restaurantController.getRestaurantsByOwnerId(ownerId,msg);
 
         if ((restaurants == null || restaurants.isEmpty())) {
@@ -1061,7 +1062,7 @@ public class Client {
         RestaurantController restaurantController = RestaurantController.getInstance();
         OrderController orderController=OrderController.getInstance();
         Message msg= new Message();
-        String ownerId=Helper.getInstance().getCurrentUserId();
+        String ownerId= Helper.getInstance().getCurrentUserId();
         ArrayList<Restaurant>restaurants=restaurantController.getRestaurantsByOwnerId(ownerId,msg);
 
         if ((restaurants == null || restaurants.isEmpty())) {
@@ -1111,7 +1112,7 @@ public class Client {
         RestaurantController restaurantController = RestaurantController.getInstance();
         OrderController orderController=OrderController.getInstance();
         Message msg= new Message();
-        String ownerId=Helper.getInstance().getCurrentUserId();
+        String ownerId= Helper.getInstance().getCurrentUserId();
         ArrayList<Restaurant>restaurants=restaurantController.getRestaurantsByOwnerId(ownerId,msg);
 
         if ((restaurants == null || restaurants.isEmpty())) {
