@@ -23,7 +23,9 @@ public class OrderController {
     public Order getOrdersByCustomerId(String customerId){
         return orderService.getOrdersByCustomerId(customerId);
     }
-
+    public ArrayList<Order> getOrderHistory(String customerId){
+        return orderService.getOrderHistory(customerId);
+    }
     public ArrayList<Order>  getOrdersByRestaurantId(String restaurantId){
         return orderService.getOrdersByRestaurantId(restaurantId);
     }

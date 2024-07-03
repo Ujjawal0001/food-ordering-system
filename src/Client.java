@@ -12,11 +12,14 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import static javax.swing.UIManager.get;
+
 public class Client {
     private static int option = 0;
     private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     private static final SecureRandom random = new SecureRandom();
-    private static String id = generateUUID();
+    private static String id ;
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -99,6 +102,17 @@ public class Client {
         }
         return rid.toString();
     }
+    private static String getFoodItemsString(ArrayList<FoodItem> foodItems) {
+        StringBuilder items = new StringBuilder();
+        for (FoodItem item : foodItems) {
+            items.append(item.getName()).append(" (").append(item.getPrice()).append("), ");
+        }
+        // Remove the last comma and space
+        if (items.length() > 0) {
+            items.setLength(items.length() - 2);
+        }
+        return items.toString();
+    }
     private static long calculateTotalPrice(ArrayList<FoodItem> foodItems) {
         long totalPrice = 0;
         for (FoodItem foodItem : foodItems) {
@@ -161,8 +175,7 @@ public class Client {
                 break;
             }
         }
-
-
+        id=generateUUID();
         // Email validation
         String email = "";
         while (true) {
@@ -412,7 +425,11 @@ public class Client {
         System.out.println(">>>>>  VIEW PROFILE  <<<<<");
         String ownerId = "";
         User user = null;
-
+        System.out.println("Enter 0 to return to main menu or enter anything to continue: ");
+        String exitInput = sc.nextLine();
+        if (exitInput.equals("0")) {
+            return;
+        }
         while (true) {
             System.out.print("Enter owner ID: ");
             ownerId = sc.nextLine().trim();
@@ -444,6 +461,11 @@ public class Client {
     RestaurantController restaurantController = RestaurantController.getInstance();
     UserController userController=UserController.getInstance();
     Message msg= new Message();
+        System.out.println("Enter 0 to return to main menu or enter anything to continue: ");
+        String exitInput = sc.nextLine();
+        if (exitInput.equals("0")) {
+            return;
+        }
         String restaurantName = "";
 
 
@@ -510,7 +532,11 @@ public class Client {
     private static void updateRestaurantMenu(Scanner sc) {
         RestaurantController restaurantController = RestaurantController.getInstance();
         Message msg = new Message();
-
+        System.out.println("Enter 0 to return to main menu or enter anything to continue: ");
+        String exitInput = sc.nextLine();
+        if (exitInput.equals("0")) {
+            return;
+        }
         while (true) {
             System.out.println("Choose options:");
             System.out.println("1. Update name of restaurant\n2. Update phone number of restaurant\n3. Update address of restaurant\n4. Update everything in the restaurant\n5. Exit");
@@ -557,8 +583,6 @@ public class Client {
                     }
 
                     if (restro == 1) {
-                        // Prompt for owner ID
-
                         // Fetch restaurants by owner ID
                         ArrayList<Restaurant> restaurants = restaurantController.getRestaurantsByOwnerId(id, msg);
                         if (restaurants == null) {
@@ -585,6 +609,11 @@ public class Client {
     private static void deleteRestaurantMenu(Scanner sc) {
         RestaurantController restaurantController = RestaurantController.getInstance();
         Message msg= new Message();
+        System.out.println("Enter 0 to return to main menu or enter anything to continue: ");
+        String exitInput = sc.nextLine();
+        if (exitInput.equals("0")) {
+            return;
+        }
         while (true) {
             System.out.print("Enter restaurant id: ");
             String id1 = sc.nextLine().trim();
@@ -634,7 +663,11 @@ public class Client {
         }
     }
     private static void addFoodItemMenu(Scanner sc) {
-
+        System.out.println("Enter 0 to return to main menu or enter anything to continue: ");
+        String exitInput = sc.nextLine();
+        if (exitInput.equals("0")) {
+            return;
+        }
         RestaurantController restaurantController = RestaurantController.getInstance();
         FoodItemController foodItemController = FoodItemController.getInstance();
         Message msg = new Message();
@@ -735,7 +768,11 @@ public class Client {
         RestaurantController restaurantController = RestaurantController.getInstance();
         FoodItemController foodItemController = FoodItemController.getInstance();
         Message msg = new Message();
-
+        System.out.println("Enter 0 to return to main menu or enter anything to continue: ");
+        String exitInput = sc.nextLine();
+        if (exitInput.equals("0")) {
+            return;
+        }
         // Step 1: Show user's restaurants
         ArrayList<Restaurant> userRestaurants = restaurantController.getRestaurantsByOwnerId(id,msg);
         if (userRestaurants.isEmpty()) {
@@ -884,7 +921,11 @@ public class Client {
     private static void viewFoodItemList(Scanner sc){
         RestaurantController restaurantController=RestaurantController.getInstance();
         Message msg = new Message();
-
+        System.out.println("Enter 0 to return to main menu or enter anything to continue: ");
+        String exitInput = sc.nextLine();
+        if (exitInput.equals("0")) {
+            return;
+        }
         // Step 1: Show user's restaurants
         ArrayList<Restaurant> userRestaurants = restaurantController.getRestaurantsByOwnerId(id,msg);
         if (userRestaurants==null||userRestaurants.isEmpty()) {
@@ -930,7 +971,11 @@ public class Client {
         FoodItemController foodItemController=FoodItemController.getInstance();
         RestaurantController restaurantController=RestaurantController.getInstance();
         Message msg = new Message();
-
+        System.out.println("Enter 0 to return to main menu or enter anything to continue: ");
+        String exitInput = sc.nextLine();
+        if (exitInput.equals("0")) {
+            return;
+        }
         // Step 1: Show user's restaurants
         ArrayList<Restaurant> userRestaurants = restaurantController.getRestaurantsByOwnerId(id,msg);
         if (userRestaurants.isEmpty()) {
@@ -987,6 +1032,11 @@ public class Client {
             RestaurantController restaurantController=RestaurantController.getInstance();
             Message msg=new Message();
             ArrayList<Restaurant> restaurants=restaurantController.getRestaurantsByOwnerId(id,msg);
+        System.out.println("Enter 0 to return to main menu or enter anything to continue: ");
+        String exitInput = sc.nextLine();
+        if (exitInput.equals("0")) {
+            return;
+        }
         if ((restaurants == null || restaurants.isEmpty())) {
             restaurants=new ArrayList<>();
             System.out.println("You don't have any restaurants.");
@@ -1010,7 +1060,11 @@ public class Client {
         Message msg= new Message();
         String ownerId= Helper.getInstance().getCurrentUserId();
         ArrayList<Restaurant>restaurants=restaurantController.getRestaurantsByOwnerId(ownerId,msg);
-
+        System.out.println("Enter 0 to return to main menu or enter anything to continue: ");
+        String exitInput = sc.nextLine();
+        if (exitInput.equals("0")) {
+            return;
+        }
         if ((restaurants == null || restaurants.isEmpty())) {
             restaurants=new ArrayList<>();
             System.out.println("You don't have any restaurants.");
@@ -1064,7 +1118,11 @@ public class Client {
         Message msg= new Message();
         String ownerId= Helper.getInstance().getCurrentUserId();
         ArrayList<Restaurant>restaurants=restaurantController.getRestaurantsByOwnerId(ownerId,msg);
-
+        System.out.println("Enter 0 to return to main menu or enter anything to continue: ");
+        String exitInput = sc.nextLine();
+        if (exitInput.equals("0")) {
+            return;
+        }
         if ((restaurants == null || restaurants.isEmpty())) {
             restaurants=new ArrayList<>();
             System.out.println("You don't have any restaurants.");
@@ -1114,7 +1172,11 @@ public class Client {
         Message msg= new Message();
         String ownerId= Helper.getInstance().getCurrentUserId();
         ArrayList<Restaurant>restaurants=restaurantController.getRestaurantsByOwnerId(ownerId,msg);
-
+        System.out.println("Enter 0 to return to main menu or enter anything to continue: ");
+        String exitInput = sc.nextLine();
+        if (exitInput.equals("0")) {
+            return;
+        }
         if ((restaurants == null || restaurants.isEmpty())) {
             restaurants=new ArrayList<>();
             System.out.println("You don't have any restaurants.");
@@ -1192,7 +1254,7 @@ public class Client {
     }
     private static void customerMenu(Scanner sc) {
         System.out.println("Choose options :");
-        System.out.print("1. View restaurants \n2. View menu of a restaurant\n3. Place order\n4. View order status\n5. LogOut");
+        System.out.print("1. View restaurants \n2. View menu of a restaurant\n3. Place order\n4. View order status\n5. View order history\n6. LogOut");
         System.out.println();
         int options = 0;
 
@@ -1219,6 +1281,10 @@ public class Client {
                 viewCustomerOrderStatus(sc);
                 break;
             case 5:
+                viewOrderHistory(sc);
+                option=9;
+                break;
+            case 6:
                 option = 0; // Log out
                 break;
             default:
@@ -1230,7 +1296,11 @@ public class Client {
     }
     private static void viewAllRestaurantList(Scanner sc){
         RestaurantController restaurantController =RestaurantController.getInstance();
-
+        System.out.println("Enter 0 to return to main menu or enter anything to continue: ");
+        String exitInput = sc.nextLine();
+        if (exitInput.equals("0")) {
+            return;
+        }
         ArrayList<Restaurant> restaurants=restaurantController.getAllRestaurants();
         if ((restaurants == null || restaurants.isEmpty())) {
             restaurants=new ArrayList<>();
@@ -1252,6 +1322,11 @@ public class Client {
         RestaurantController restaurantController = RestaurantController.getInstance();
         FoodItemController foodItemController = FoodItemController.getInstance();
         ArrayList<Restaurant> restaurants = restaurantController.getAllRestaurants();
+        System.out.println("Enter 0 to return to main menu or enter anything to continue: ");
+        String exitInput = sc.nextLine();
+        if (exitInput.equals("0")) {
+            return;
+        }
         if ((restaurants == null || restaurants.isEmpty())) {
             restaurants = new ArrayList<>();
             System.out.println("Sorry! No restaurants available.");
@@ -1307,7 +1382,11 @@ public class Client {
         FoodItemController foodItemController = FoodItemController.getInstance();
         OrderController orderController = OrderController.getInstance();
         Message msg = new Message();
-
+        System.out.println("Enter 0 to return to main menu or enter anything to continue: ");
+        String exitInput = sc.nextLine();
+        if (exitInput.equals("0")) {
+            return;
+        }
         ArrayList<Restaurant> restaurants = restaurantController.getAllRestaurants();
         if ((restaurants == null || restaurants.isEmpty())) {
             System.out.println("Sorry! No restaurants available.");
@@ -1397,7 +1476,11 @@ public class Client {
     }
     private static void viewCustomerOrderStatus(Scanner sc) {
         OrderController orderController = OrderController.getInstance();
-
+        System.out.println("Enter 0 to return to main menu or enter anything to continue: ");
+        String exitInput = sc.nextLine();
+        if (exitInput.equals("0")) {
+            return;
+        }
         while (true) {
             System.out.print("Enter order id: ");
             String orderInput = sc.nextLine().trim();
@@ -1426,5 +1509,42 @@ public class Client {
 
         System.out.println("Press enter to continue");
         sc.nextLine();
+    }
+    private static void viewOrderHistory(Scanner sc) {
+
+        OrderController orderController = OrderController.getInstance();
+        String customerId = Helper.getInstance().getCurrentUserId();
+        System.out.println("Enter 0 to return to main menu or enter anything to continue: ");
+        String exitInput = sc.nextLine();
+        if (exitInput.equals("0")) {
+            return;
+        }
+            if (customerId == null) {
+                System.out.println("No customer ID found for the current session.");
+                System.out.println("Press enter to continue");
+                sc.nextLine();
+                return;
+            }
+
+            ArrayList<Order> orders = orderController.getOrderHistory(customerId);
+
+            if (orders == null || orders.isEmpty()) {
+                System.out.println("No orders found for the current user.");
+                System.out.println("Press enter to continue");
+                sc.nextLine();
+                return;
+            }
+
+            System.out.println("Order History:");
+            System.out.printf("%-20s %-20s %-20s %-20s %-20s%n", "Order ID", "Restaurant ID", "Total Price", "Status", "Food Items");
+            System.out.println("-------------------------------------------------");
+
+            for (Order order : orders) {
+                System.out.printf("%-20s %-20s %-20s %-20s %-20s%n", order.getId(), order.getRestaurantId(), order.getTotalPrice(), order.getStatus(), getFoodItemsString(order.getFoodItems()));
+            }
+
+            System.out.println("Press enter to continue");
+            sc.nextLine();
+
     }
 }

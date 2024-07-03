@@ -1,3 +1,7 @@
+import model.FoodItem;
+
+import java.util.ArrayList;
+
 public class Helper {
     private static Helper instance;
     private String currentUserId;
@@ -11,6 +15,8 @@ public class Helper {
         return instance;
     }
 
+
+
     public String getCurrentUserId() {
         return currentUserId;
     }
@@ -22,4 +28,5 @@ public class Helper {
     public void clearCurrentUserId() {
         this.currentUserId = null;
     }
+
 }

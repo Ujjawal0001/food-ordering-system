@@ -60,7 +60,7 @@ public class OrderServiceImpl implements OrderService {
         }
         return null;
     }
-
+    private ArrayList<Order> orders = new ArrayList<>();
     public boolean updateOrderStatus(String orderId, String status ,Message msg) {
        Order order=orderRepository.findOrderById(orderId);
        if(order!=null){
@@ -70,4 +70,14 @@ public class OrderServiceImpl implements OrderService {
        msg.setMessage("Order doesn't exists");
        return false;
     }
+    public ArrayList<Order>  getOrderHistory(String customerId){
+            // Replace with actual database fetching logic
+            ArrayList<Order> customerOrders = new ArrayList<>();
+            for (Order order :orders ) {
+                if (order.getCustomerId().equals(customerId)) {
+                    customerOrders.add(order);
+                }
+            }
+            return customerOrders;
+        }
 }
