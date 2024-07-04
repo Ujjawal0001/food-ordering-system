@@ -1311,7 +1311,7 @@ public class Client {
         }
         System.out.println("Available restaurants:");
         System.out.printf("%-20s %-40s %-50s %-40s%n", "Restaurant ID", "Restaurant Name", "Restaurant Address", "Restaurant PhonuNumber");
-        System.out.println("-------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------------------------");
         for (Restaurant restaurant : restaurants) {
             System.out.printf("%-20s %-40s %-50s %-40s%n", restaurant.getId(), restaurant.getName(), restaurant.getAddress(), restaurant.getPhoneNumber());
         }
@@ -1337,7 +1337,7 @@ public class Client {
 
         System.out.println("Available restaurants:");
         System.out.printf("%-20s %-40s %-50s %-40s%n", "Restaurant ID", "Restaurant Name", "Restaurant Address", "Restaurant PhonuNumber");
-        System.out.println("-------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------------------------");
         for (Restaurant restaurant : restaurants) {
             System.out.printf("%-20s %-40s %-50s %-40s%n", restaurant.getId(), restaurant.getName(), restaurant.getAddress(), restaurant.getPhoneNumber());
         }
@@ -1356,7 +1356,7 @@ public class Client {
                         }
                         System.out.println("Menu");
                         System.out.printf("%-20s %-40s %-30s %-30s %-30s%n", "FoodItem ID", "FoodItem name", "Price", "FoodItem Description", "Availability");
-                        System.out.println("-------------------------------------------------");
+                        System.out.println("----------------------------------------------------------------------------------------------------------------");
                         for (FoodItem foodItem : foodItems) {
                             System.out.printf("%-20s %-40s %-30s %-30s %-30s%n ", foodItem.getId(), foodItem.getName(), foodItem.getPrice(), foodItem.getDescription(), foodItem.isAvailability());
                         }
@@ -1397,7 +1397,7 @@ public class Client {
 
         System.out.println("Available restaurants:");
         System.out.printf("%-20s %-40s %-50s %-40s%n", "Restaurant ID", "Restaurant Name", "Restaurant Address", "Restaurant Phone Number");
-        System.out.println("-------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
         for (Restaurant restaurant : restaurants) {
             System.out.printf("%-20s %-40s %-50s %-40s%n", restaurant.getId(), restaurant.getName(), restaurant.getAddress(), restaurant.getPhoneNumber());
         }
@@ -1415,7 +1415,7 @@ public class Client {
 
                 System.out.println("Menu:");
                 System.out.printf("%-20s %-40s %-30s %-30s %-30s%n", "FoodItem ID", "FoodItem Name", "Price", "FoodItem Description", "Availability");
-                System.out.println("-------------------------------------------------");
+                System.out.println("--------------------------------------------------------------------------------------------------------------");
                 for (FoodItem foodItem : foodItems) {
                     System.out.printf("%-20s %-40s %-30s %-30s %-30s%n", foodItem.getId(), foodItem.getName(), foodItem.getPrice(), foodItem.getDescription(), foodItem.isAvailability());
                 }
@@ -1452,7 +1452,6 @@ public class Client {
                         long totalPrice = calculateTotalPrice(selectedFoodItems);
 
                         boolean orderPlaced = orderController.placeOrder(customerId, orderId, restaurantId, "PENDING", totalPrice, selectedFoodItems, msg);
-
                         if (orderPlaced) {
                             System.out.println("Your order id is :"+orderId);
                             System.out.println("Order placed successfully.");
@@ -1525,9 +1524,8 @@ public class Client {
                 sc.nextLine();
                 return;
             }
-
             ArrayList<Order> orders = orderController.getOrderHistory(customerId);
-
+        System.out.println(orders);
             if (orders == null || orders.isEmpty()) {
                 System.out.println("No orders found for the current user.");
                 System.out.println("Press enter to continue");
@@ -1537,7 +1535,7 @@ public class Client {
 
             System.out.println("Order History:");
             System.out.printf("%-20s %-20s %-20s %-20s %-20s%n", "Order ID", "Restaurant ID", "Total Price", "Status", "Food Items");
-            System.out.println("-------------------------------------------------");
+            System.out.println("-------------------------------------------------------------------------------------------------");
 
             for (Order order : orders) {
                 System.out.printf("%-20s %-20s %-20s %-20s %-20s%n", order.getId(), order.getRestaurantId(), order.getTotalPrice(), order.getStatus(), getFoodItemsString(order.getFoodItems()));
@@ -1546,5 +1544,5 @@ public class Client {
             System.out.println("Press enter to continue");
             sc.nextLine();
 
-    }
+    }//not working
 }

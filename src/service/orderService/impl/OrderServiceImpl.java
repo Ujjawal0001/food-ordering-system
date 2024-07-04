@@ -23,15 +23,18 @@ public class OrderServiceImpl implements OrderService {
 
     private OrderRepositoryImpl orderRepository = OrderRepositoryImpl.getInstance();
     private RestaurantServiceImpl restaurantService = RestaurantServiceImpl.getInstance();
+    private ArrayList<Order> orders = new ArrayList<>();
 
 
    public boolean placeOrder(String customerId, String id, String restaurantId, String status, long totalPrice , ArrayList<FoodItem> foodItems,Message msg){
        Restaurant restaurant=restaurantService.isRestaurant(restaurantId);
+
        if(restaurant!=null){
            boolean isOrder=orderRepository.isOrderExists(id);
            if(!isOrder) {
                Order order = new Order(customerId, id, restaurantId, status, totalPrice,foodItems);
                orderRepository.saveOrder(order);
+               orders.add(order);
                order.setStatus("PENDING");
                restaurant.getOrders().add(order);
                return  true;
@@ -60,7 +63,6 @@ public class OrderServiceImpl implements OrderService {
         }
         return null;
     }
-    private ArrayList<Order> orders = new ArrayList<>();
     public boolean updateOrderStatus(String orderId, String status ,Message msg) {
        Order order=orderRepository.findOrderById(orderId);
        if(order!=null){
@@ -70,14 +72,19 @@ public class OrderServiceImpl implements OrderService {
        msg.setMessage("Order doesn't exists");
        return false;
     }
-    public ArrayList<Order>  getOrderHistory(String customerId){
-            // Replace with actual database fetching logic
-            ArrayList<Order> customerOrders = new ArrayList<>();
-            for (Order order :orders ) {
-                if (order.getCustomerId().equals(customerId)) {
-                    customerOrders.add(order);
-                }
+    public ArrayList<Order> getOrderHistory(String customerId) {
+        ArrayList<Order> customerOrders = new ArrayList<>();
+        for (Order order : orders) {
+
+            if (order.getCustomerId().equals(customerId)) {
+                customerOrders.add(order);
             }
-            return customerOrders;
         }
+        // If no orders are found, return an empty list instead of null
+        if (customerOrders.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        return customerOrders;
+    }
 }

@@ -11,4 +11,6 @@ public interface OrderService {
     Order getOrdersByCustomerId(String customerId);
     ArrayList<Order>  getOrdersByRestaurantId(String restaurantId);
     boolean updateOrderStatus(String orderId, String status ,Message msg);
+    public ArrayList<Order>  getOrderHistory(String customerId);
 }
+

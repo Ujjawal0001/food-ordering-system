@@ -123,7 +123,6 @@ public class FoodItemServiceImpl implements FoodItemService {
     public ArrayList<FoodItem> getFoodItemsByRestaurantId(String restaurantId){
         Restaurant restaurant = restaurantService.isRestaurant(restaurantId);
         if(restaurant!=null){
-            System.out.println(restaurant.getFoodItems().get(0).getName());
             return restaurant.getFoodItems();
         }
         return null;
